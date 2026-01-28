@@ -112,7 +112,9 @@ app.get("/gen", (req, res) => {
   );
 
   const port = process.env.PORT || 3000;
-  const url = `http://localhost:${port}/?token=${token}`;
+  const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
+  const link = `${baseUrl}/?token=${token}`;
+
 
   res.send(`
     <html><head><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
