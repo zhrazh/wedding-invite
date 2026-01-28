@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
+import { filebaseUrlToPath } from "baseUrl";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
 
-const __filename = fileURLToPath(import.meta.url);
+const __filename = filebaseUrlToPath(import.meta.baseUrl);
 const __dirname = path.dirname(__filename);
 
 // ====== In-memory store (swap with DB if needed) ======
