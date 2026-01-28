@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Undangan Pernikahan</title>
+  <meta name="theme-color" content="#0b0b10" />
+  <link rel="preconnect" href="https://unpkg.com" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/public/styles.css" />
+</head>
+<body>
+  <!-- Background Music (loop) -->
+  <audio id="bgm" preload="auto" loop>
+    <source src="/public/assets/music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Progress bar -->
+  <div class="progress" aria-hidden="true">
+    <div id="progressBar" class="progress__bar"></div>
+  </div>
+
+  <!-- Floating controls -->
+  <div class="floating" aria-label="Quick controls">
+    <button id="btnMusic" class="icon-btn" aria-label="Toggle music" title="Music">
+      ♪
+    </button>
+    <button id="btnTop" class="icon-btn" aria-label="Back to top" title="Top">
+      ↑
+    </button>
+  </div>
+
+  <!-- COVER / PAGE 1 -->
+  <section id="cover" class="cover">
+    <div class="cover__bg" aria-hidden="true"></div>
+    <div class="cover__veil" aria-hidden="true"></div>
+
+    <div class="cover__card" data-aos="zoom-in">
+      <div class="cover__cap muted">The Wedding of</div>
+      <h1 class="display">
+        Damar <span class="amp">&</span> Winni
+      </h1>
+
+      <div class="divider"></div>
+
+      <div class="muted tiny">Kepada Yth.</div>
+      <div id="guestName" class="guest">Tamu Undangan</div>
+
+      <button id="openInvite" class="btn-primary">
+        Buka Undangan
+      </button>
+
+      <div class="tiny muted hint">
+        Setelah dibuka, undangan bisa di-scroll ke bawah.
+      </div>
+    </div>
+
+    <div class="cover__scroll muted tiny" aria-hidden="true">
+      <span class="dot"></span> Eksklusif untuk tamu undangan
+    </div>
+  </section>
+
+  <!-- INVITE / PAGE 2 (SCROLL) -->
+  <main id="invite" class="invite hidden" aria-hidden="true">
+    <!-- TOP NAV (small) -->
+    <nav class="mini-nav" aria-label="Section shortcuts">
+      <button class="mini-nav__btn" data-jump="#home">Home</button>
+      <button class="mini-nav__btn" data-jump="#couple">Mempelai</button>
+      <button class="mini-nav__btn" data-jump="#event">Acara</button>
+      <button class="mini-nav__btn" data-jump="#wishes">Ucapan</button>
+      <button class="mini-nav__btn" data-jump="#gift">Gift</button>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="section hero">
+      <div class="container">
+        <div class="hero__inner" data-aos="fade-up">
+          <div class="pill">Save Our Date</div>
+
+          <h2 class="title">Yudha <span class="amp">&</span> Tata</h2>
+          <p class="subtitle">Saturday, 9 May 2026</p>
+
+          <div class="countdown" aria-label="Countdown">
+            <div class="cd"><div id="d" class="num">00</div><div class="label">Hari</div></div>
+            <div class="cd"><div id="h" class="num">00</div><div class="label">Jam</div></div>
+            <div class="cd"><div id="m" class="num">00</div><div class="label">Menit</div></div>
+            <div class="cd"><div id="s" class="num">00</div><div class="label">Detik</div></div>
+          </div>
+
+          <div class="actions">
+            <a id="addToCalendar" class="btn-secondary" target="_blank" rel="noreferrer">
+              Save The Date
+            </a>
+            <button class="btn-ghost" data-jump="#event">Lihat Detail</button>
+          </div>
+
+          <div class="hero__note tiny muted">
+            Musik akan berjalan saat kamu scroll (bisa dimatikan di kanan bawah).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="section">
+      <div class="container">
+        <div class="card quote-card" data-aos="fade-up">
+          <p class="quote">
+            “Tuhan membuat segala sesuatu indah pada waktunya. 
+            Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih 
+            dan indah saat Dia mempersatukan kami dalam suatu ikatan pernikahan kudus.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COUPLE -->
+    <section id="couple" class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h3 class="section-title">The Bride and The Groom</h3>
+        </div>
+
+        <div class="grid2">
+          <div class="profile card" data-aos="fade-right">
+            <div class="avatar" style="background-image:url('/public/assets/hero.jpg')"></div>
+            <h4 class="h4">Damar</h4>
+            <p class="muted">Putra ke- dari Bapak … & Ibu …</p>
+            <div class="chip-row">
+              <span class="chip">@instagram</span>
+              <span class="chip">Solo</span>
+            </div>
+          </div>
+
+          <div class="profile card" data-aos="fade-left">
+            <div class="avatar" style="background-image:url('/public/assets/hero.jpg')"></div>
+            <h4 class="h4">Winni</h4>
+            <p class="muted">Putri ke- dari Bapak … & Ibu …</p>
+            <div class="chip-row">
+              <span class="chip">@instagram</span>
+              <span class="chip">Tangerang Selatan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT + MAP -->
+    <section id="event" class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h3 class="section-title">Acara</h3>
+          <p class="muted">Dengan segala kerendahan hati, kami mengundang Bapak/ Ibu/ Saudara/i 
+            menghadiri acara Pernikahan Putra-Putri kami yang akan dilaksanakan pada:</p>
+        </div>
+
+        <div class="grid2">
+          <div class="card" data-aos="fade-up">
+            <div class="event-title">
+              <h4 class="h4">Sakramen Pernikahan</h4>
+              <span class="badge">Sacred</span>
+            </div>
+            <p class="muted">Saturday, 9 May 2026 • 10.00</p>
+            <p>Gereja St. Barnabas<br/>Pamulang, Tangerang Selatan</p>
+            <div class="event-cta">
+              <a class="btn-secondary" target="_blank" rel="noreferrer" href="https://maps.app.goo.gl/1WKGj26PK7ofA3v18">Buka Maps</a>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-up">
+            <div class="event-title">
+              <h4 class="h4">Resepsi Pernikahan</h4>
+              <span class="badge">Celebration</span>
+            </div>
+            <p class="muted">Saturday, 9 Mei 2026 • 11.00–14.00</p>
+            <p>Ged Ande Prevot<br/>Pamulang, Tangerang Selatan</p>
+            <div class="event-cta">
+              <a class="btn-secondary" target="_blank" rel="noreferrer" href="https://maps.app.goo.gl/">Buka Maps</a>
+            </div>
+          </div>
+        </div>
+
+    <!-- RSVP + WISHES -->
+    <section id="wishes" class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h3 class="section-title">Ucapan & Doa</h3>
+          <p class="muted">Tinggalkan pesan untuk kedua mempelai</p>
+        </div>
+
+        <div class="grid2">
+          <div class="card" data-aos="fade-right">
+            <h4 class="h4">Konfirmasi Kehadiran</h4>
+            <div class="rsvp">
+              <button class="btn-secondary" data-att="hadir">Hadir</button>
+              <button class="btn-ghost" data-att="tidak">Tidak Hadir</button>
+            </div>
+            <p id="rsvpStatus" class="tiny muted"></p>
+          </div>
+
+          <div class="card" data-aos="fade-left">
+            <h4 class="h4">Tulis Ucapan</h4>
+            <form id="wishForm" class="form">
+              <textarea id="name" rows="4" placeholder="Nama" minlength="1" required></textarea>
+              <textarea id="wishMessage" rows="4" placeholder="Tulis ucapan & doa..." minlength="2" required></textarea>
+              <div class="form-row">
+                <select id="wishAttendance">
+                  <option value="hadir">Hadir</option>
+                  <option value="tidak">Tidak hadir</option>
+                </select>
+                <button class="btn-primary" type="submit">Kirim</button>
+              </div>
+              <p id="wishInfo" class="tiny muted"></p>
+            </form>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+          <div class="wish-head">
+            <h4 class="h4">Daftar Ucapan</h4>
+            <button id="refreshWishes" class="btn-ghost">Refresh</button>
+          </div>
+          <div id="wishList" class="wish-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h3 class="section-title">Gallery</h3>
+          <p class="muted">Klik foto untuk memperbesar</p>
+        </div>
+
+        <div class="gallery" data-aos="fade-up">
+          <button class="gitem" data-img="/public/assets/gallery-1.jpg" style="background-image:url('/public/assets/gallery-1.jpg')"></button>
+          <button class="gitem" data-img="/public/assets/gallery-2.jpg" style="background-image:url('/public/assets/gallery-2.jpg')"></button>
+          <button class="gitem" data-img="/public/assets/gallery-3.jpg" style="background-image:url('/public/assets/gallery-3.jpg')"></button>
+          <button class="gitem" data-img="/public/assets/gallery-4.jpg" style="background-image:url('/public/assets/gallery-4.jpg')"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIFT -->
+    <section id="gift" class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h3 class="section-title">Wedding Gift</h3>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+          <p class="muted">
+            Doa restu anda merupakan karunia yang sangat berarti bagi kami.
+            Jika ingin memberi tanda kasih, bisa melalui amplop online berikut.
+          </p>
+
+          <div class="gift">
+            <div class="gift-row">
+              <div>
+                <h4 class="h4">Bank BCA</h4>
+                <p class="muted">A/n Nama Pemilik Rekening</p>
+              </div>
+              <div class="copy">
+                <code id="acc">0603010492</code>
+                <button id="copyAcc" class="btn-secondary">Salin</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider soft"></div>
+
+          <div class="grid2">
+            <div class="card mini" data-aos="fade-up">
+              <h4 class="h4">Alamat Kado</h4>
+              <p class="muted tiny">Jika ingin mengirim kado fisik, isi alamat di sini.</p>
+              <p>Jl. Contoh No. 123, Semarang</p>
+            </div>
+            <div class="card mini" data-aos="fade-up">
+              <h4 class="h4">Konfirmasi</h4>
+              <p class="muted tiny">Tambahkan nomor WA untuk konfirmasi (opsional).</p>
+              <a class="btn-secondary" target="_blank" rel="noreferrer" href="https://wa.me/62">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="section closing">
+      <div class="container">
+        <div class="stack center" data-aos="fade-up">
+          <p class="quote">
+            “Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.”
+          </p>
+          <p class="muted">Terima kasih atas kehadiran & doa restunya.</p>
+          <h2 class="title">Damar <span class="amp">&</span> Winni</h2>
+          <p class="tiny muted">Made with love.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox hidden" aria-hidden="true">
+      <button id="lbClose" class="lb-close" aria-label="Close">×</button>
+      <img id="lbImg" alt="Gallery" />
+    </div>
+
+    <footer class="footer tiny muted">
+      <div class="container">© 2026 — Undangan Pernikahan</div>
+    </footer>
+  </main>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="/public/app.js"></script>
+</body>
+</html>
