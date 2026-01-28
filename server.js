@@ -58,20 +58,20 @@ app.use("/public", express.static(path.join(__dirname, "public"), {
   etag: true
 }));
 
-app.get("/", authGate, (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // ===== API =====
-app.get("/api/me", authGate, (req, res) => {
+app.get("/api/me", (req, res) => {
   res.json({ ok: true });
 });
 
-app.get("/api/wishes", authGate, (req, res) => {
+app.get("/api/wishes", (req, res) => {
   res.json(wishes.slice().reverse());
 });
 
-app.post("/api/wishes", authGate, (req, res) => {
+app.post("/api/wishes", (req, res) => {
   const guestName = req.get("X-Guest-Name") || "Tamu";
   const { message, attendance } = req.body || {};
   const msg = String(message || "").trim();
@@ -87,7 +87,7 @@ app.post("/api/wishes", authGate, (req, res) => {
   res.json({ ok: true, entry });
 });
 
-app.post("/api/rsvp", authGate, (req, res) => {
+app.post("/api/rsvp", (req, res) => {
   const guestName = req.get("X-Guest-Name") || "Tamu";
   const { attendance } = req.body || {};
   const entry = {
@@ -101,45 +101,6 @@ app.post("/api/rsvp", authGate, (req, res) => {
 
 // ===== Helper: generate token for a specific guest =====
 // Example: http://localhost:3000/gen?to=Mas%20Wiwis
-app.get("/gen", (req, res) => {
-  const to = req.query.to;
-  if (!to) return res.status(400).send("Tambahkan ?to=NamaTamu");
-
-  const token = jwt.sign(
-    { to: String(to), scope: "invite" },
-    process.env.JWT_SECRET,
-    { expiresIn: "180d" }
-  );
-
-  const port = process.env.PORT || 8080;
-  const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
-  const link = `${baseUrl}/?token=${token}`;
-
-
-  res.send(`
-    <html>
-      <head>
-        <title>Link Undangan</title>
-        <meta charset="utf-8" />
-      </head>
-      <body style="font-family: sans-serif; padding: 40px">
-        <h2>Link Undangan</h2>
-        <p>Untuk: <b>${to}</b></p>
-
-        <p>
-          <a href="${link}">Buka Undangan</a>
-        </p>
-
-        <p>Copy link:</p>
-        <input style="width:100%" value="${link}" readonly />
-
-        <p style="margin-top:20px;color:#666">
-          Tips: setelah dibuka sekali, token akan tersimpan via cookie.
-        </p>
-      </body>
-    </html>
-  `);
-});
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
