@@ -111,25 +111,37 @@ app.get("/gen", (req, res) => {
     { expiresIn: "180d" }
   );
 
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 8080;
   const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
   const link = `${baseUrl}/?token=${token}`;
 
 
   res.send(`
-    <html><head><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
-    <body style="font-family:system-ui;padding:24px;max-width:900px;margin:auto;">
-      <h3 style="margin:0 0 10px;">Link Undangan</h3>
-      <p style="margin:0 0 12px;">Untuk: <b>${String(to)}</b></p>
-      <p style="margin:0 0 12px;"><a href="${url}">Buka Undangan</a></p>
-      <p style="margin:0 0 8px;">Copy link:</p>
-      <code style="display:block;padding:12px;border:1px solid #ddd;border-radius:10px;word-break:break-all">${url}</code>
-      <p style="margin:14px 0 0;color:#555">Tips: setelah dibuka sekali, token akan tersimpan via cookie.</p>
-    </body></html>
+    <html>
+      <head>
+        <title>Link Undangan</title>
+        <meta charset="utf-8" />
+      </head>
+      <body style="font-family: sans-serif; padding: 40px">
+        <h2>Link Undangan</h2>
+        <p>Untuk: <b>${to}</b></p>
+
+        <p>
+          <a href="${link}">Buka Undangan</a>
+        </p>
+
+        <p>Copy link:</p>
+        <input style="width:100%" value="${link}" readonly />
+
+        <p style="margin-top:20px;color:#666">
+          Tips: setelah dibuka sekali, token akan tersimpan via cookie.
+        </p>
+      </body>
+    </html>
   `);
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Server: http://localhost:${port}`);
   console.log(`Generate link: http://localhost:${port}/gen?to=Mas%20Wiwis`);
