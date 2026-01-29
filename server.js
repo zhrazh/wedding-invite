@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import { filebaseUrlToPath } from "baseUrl";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
@@ -102,8 +101,5 @@ app.post("/api/rsvp", (req, res) => {
 // ===== Helper: generate token for a specific guest =====
 // Example: http://localhost:3000/gen?to=Mas%20Wiwis
 
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(`Server: http://localhost:${port}`);
-  console.log(`Generate link: http://localhost:${port}/gen?to=Mas%20Wiwis`);
-});
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, "0.0.0.0", () => console.log("Listening on", PORT));
