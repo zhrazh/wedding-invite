@@ -1,3 +1,9 @@
+function getGuestName() {
+  const params = new URLSearchParams(window.location.search);
+  const to = params.get("to");
+  return to ? decodeURIComponent(to) : "Tamu Undangan";
+}
+
 // ===== Animations init =====
 AOS.init({
   duration: 850,
@@ -26,17 +32,6 @@ function jumpTo(sel){
 function lockScroll(lock) {
   document.documentElement.style.overflow = lock ? "hidden" : "";
   document.body.style.overflow = lock ? "hidden" : "";
-}
-
-// Get guest name (server injects header on protected routes)
-async function loadGuestName() {
-  try {
-    const res = await fetch("/api/me", { headers: { "Accept": "application/json" }});
-    const guest = res.headers.get("X-Guest-Name") || "Tamu Undangan";
-    elGuestName.textContent = guest;
-  } catch {
-    elGuestName.textContent = "Tamu Undangan";
-  }
 }
 
 // Music control (autoplay requires user gesture)
@@ -73,7 +68,12 @@ document.querySelectorAll("[data-jump]").forEach((b) => {
 
 // Cover open
 lockScroll(true);
-loadGuestName();
+const params = new URLSearchParams(window.location.search);
+const to = params.get("to");
+
+elGuestName.textContent = to
+  ? decodeURIComponent(to)
+  : "Tamu Undangan";
 
 btnOpen.addEventListener("click", async () => {
   elInvite.classList.remove("hidden");
@@ -254,3 +254,15 @@ function closeLb(){
 }
 lbClose.addEventListener("click", closeLb);
 lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const to = params.get("to");
+
+  const guestName = to ? decodeURIComponent(to) : "Tamu Undangan";
+
+  const el = document.getElementById("guestName");
+  if (el) {
+    el.textContent = guestName;
+  }
+});
