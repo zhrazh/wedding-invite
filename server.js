@@ -10,9 +10,6 @@ const app = express();
 app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
 
-const __filename = filebaseUrlToPath(import.meta.baseUrl);
-const __dirname = path.dirname(__filename);
-
 // ====== In-memory store (swap with DB if needed) ======
 const wishes = []; // { name, message, attendance, createdAt }
 const rsvps  = []; // { name, attendance, createdAt }
