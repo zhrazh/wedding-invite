@@ -120,7 +120,7 @@ button{font-family:inherit}
     radial-gradient(900px 520px at 20% 20%, rgba(255,255,255,.10), transparent 60%),
     radial-gradient(760px 460px at 85% 30%, rgba(255,255,255,.08), transparent 60%),
     linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.78)),
-    url("/public/assets/hero.jpg") center/cover no-repeat;
+    url("/public/assets/cover.jpg") center/cover no-repeat;
   transform: scale(1.03);
 }
 .cover__veil{
