@@ -39,7 +39,7 @@ let musicEnabled = false;
 
 async function playMusic() {
   try {
-    bgm.volume = 1.00;
+    bgm.volume = 0.75;
     await bgm.play();
     musicEnabled = true;
     btnMusic.textContent = "❚❚";
